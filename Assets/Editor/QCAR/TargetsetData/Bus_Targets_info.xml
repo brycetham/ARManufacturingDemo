@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
   <TargetSet version="5.0" toolVersion="4.2.0">
+    <ObjectTarget bbox="0.0 0.0 0.0 142.5 95.0 95.0" captureAppVersion="1.0.0" lastSaved="2016-11-28 18:51:04" name="buspart3new" targetId="69e7141c002f468db5cdb4d3e47026ff" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 142.5 95.0 95.0" captureAppVersion="1.0.0" lastSaved="2016-11-28 18:47:24" name="buspart2new" targetId="48fa1a45e98448bfa6fcb1d8d4eb50d5" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 142.5 95.0 95.0" captureAppVersion="1.0.0" lastSaved="2016-11-28 18:39:28" name="buspart1new" targetId="9f2d719d03d8443aab4802928c238187" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 142.5 95.0 95.0" captureAppVersion="1.0.0" lastSaved="2016-11-27 20:40:00" name="buspart3" targetId="0e387a6a646e40e1b796d610d974cef0" version="2.0" />
     <ObjectTarget bbox="0.0 0.0 0.0 142.5 95.0 95.0" captureAppVersion="1.0.0" lastSaved="2016-11-27 17:48:46" name="buspart2" targetId="c6f3f7fb04c641ad835f8b5798f966e1" version="2.0" />
     <ObjectTarget bbox="0.0 0.0 0.0 142.5 95.0 95.0" captureAppVersion="1.0.0" lastSaved="2016-11-27 20:37:46" name="buspart1" targetId="1c271c4402764fe99a7458c13fc521ec" version="2.0" />
   </TargetSet>
