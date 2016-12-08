@@ -1,33 +1,18 @@
-﻿/*==============================================================================
-Copyright (c) 2010-2014 Qualcomm Connected Experiences, Inc.
-All Rights Reserved.
-Confidential and Proprietary - Protected under copyright and other laws.
-==============================================================================*/
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Vuforia
 {
-    /// <summary>
-    /// A custom handler that implements the ITrackableEventHandler interface.
-    /// </summary>
-    public class QRTrackableEventHandler : MonoBehaviour,
-                                                ITrackableEventHandler
+
+    public class QRTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
     {
-        #region PRIVATE_MEMBER_VARIABLES
 
         private TrackableBehaviour mTrackableBehaviour;
-        public bool active;
-
-        #endregion // PRIVATE_MEMBER_VARIABLES
-
-
-
-        #region UNTIY_MONOBEHAVIOUR_METHODS
+        public int gameStep;
+        public string gameText;
 
         void Start()
         {
-            active = false;
+            gameStep = 1;
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
             {
@@ -35,16 +20,27 @@ namespace Vuforia
             }
         }
 
-        #endregion // UNTIY_MONOBEHAVIOUR_METHODS
+        void Update()
+        {
+            switch (gameStep)
+            {
+                case 1:
+                    gameText = "Step 1/3\n<size=30>1st Step</size>\nBuild the base.";
+                    break;
+                case 2:
+                    gameText = "Step 2/3\n<size=30>Next Step</size>\nAdd the mid-frame.";
+                    break;
+                case 3:
+                    gameText = "Step 3/3\n<size=30>Last Step</size>\nAdd the ceiling.";
+                    break;
+                case 4:
+                    gameText = "Bus Complete\n<size=30>Congratulations</size>\nYou did it!";
+                    break;
+            }
 
+            GameObject.Find("QRText").GetComponent<TextMesh>().text = gameText;
+        }
 
-
-        #region PUBLIC_METHODS
-
-        /// <summary>
-        /// Implementation of the ITrackableEventHandler function called when the
-        /// tracking state changes.
-        /// </summary>
         public void OnTrackableStateChanged(
                                         TrackableBehaviour.Status previousStatus,
                                         TrackableBehaviour.Status newStatus)
@@ -61,17 +57,9 @@ namespace Vuforia
             }
         }
 
-        #endregion // PUBLIC_METHODS
-
-
-
-        #region PRIVATE_METHODS
-
-
         private void OnTrackingFound()
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
-            Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
             // Enable rendering:
             foreach (Renderer component in rendererComponents)
@@ -79,24 +67,12 @@ namespace Vuforia
                 component.enabled = true;
             }
 
-            // Enable colliders:
-            foreach (Collider component in colliderComponents)
-            {
-                component.enabled = true;
-            }
-
-            if (mTrackableBehaviour.TrackableName == "qrcode")
-            {
-                Debug.Log("QR Code Found!");
-                active = true;
-            }
         }
 
 
         private void OnTrackingLost()
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
-            Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
             // Disable rendering:
             foreach (Renderer component in rendererComponents)
@@ -104,17 +80,10 @@ namespace Vuforia
                 component.enabled = false;
             }
 
-            // Disable colliders:
-            foreach (Collider component in colliderComponents)
-            {
-                component.enabled = false;
-            }
-
             Debug.Log("QR Code Lost!");
-            active = false;
+            //active = false;
 
         }
 
-        #endregion // PRIVATE_METHODS
     }
 }
