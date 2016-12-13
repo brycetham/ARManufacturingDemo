@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
   <Tracking>
+    <ObjectTarget name="buspart3a" />
+    <ObjectTarget name="buspart2a" />
+    <ObjectTarget name="buspart1a" />
+    <ObjectTarget name="buspart3h" />
+    <ObjectTarget name="buspart2h" />
+    <ObjectTarget name="buspart1h" />
     <ObjectTarget name="buspart3u" />
     <ObjectTarget name="buspart2u" />
     <ObjectTarget name="buspart1u" />
