@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Vuforia
 {
@@ -34,11 +35,12 @@ namespace Vuforia
                     gameText = "Step 3/3\n<size=30>Last Step</size>\nAdd the ceiling.";
                     break;
                 case 4:
-                    gameText = "Bus Complete\n<size=30>Congratulations</size>\nYou did it!";
+                    gameText = "Level: Bus\n<size=30>Complete</size>\nCongratulations";
                     break;
             }
 
             GameObject.Find("QRText").GetComponent<TextMesh>().text = gameText;
+
         }
 
         public void OnTrackableStateChanged(

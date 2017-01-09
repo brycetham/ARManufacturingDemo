@@ -13,7 +13,7 @@ namespace Vuforia
 
         void Start()
         {
-            completeText = completeText.Replace("<br>", "\n");
+//            completeText = completeText.Replace("<br>", "\n");
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
             {
@@ -39,9 +39,7 @@ namespace Vuforia
 
         private void OnTrackingFound()
         {
-            GameObject qrTarget = GameObject.Find("QRTarget");
-            int gameStep = qrTarget.GetComponent<QRTrackableEventHandler>().gameStep;
-            if (gameStep == thisStep)
+			if (GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep == thisStep)
             {
                 Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
 
@@ -51,7 +49,7 @@ namespace Vuforia
                     component.enabled = true;
                 }
 
-                StartCoroutine(Complete(qrTarget));
+                StartCoroutine(Complete());
             }
 
         }
@@ -69,12 +67,15 @@ namespace Vuforia
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 
-        IEnumerator Complete(GameObject qrTarget)
+        IEnumerator Complete()
         {
-            qrTarget.GetComponent<QRTrackableEventHandler>().gameStep = 0;
-            qrTarget.GetComponent<QRTrackableEventHandler>().gameText = completeText;
+			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().pause = true;
+			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().gameStep = 0;
+			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().gameText = completeText;
             yield return new WaitForSeconds(5);
-            qrTarget.GetComponent<QRTrackableEventHandler>().gameStep = thisStep + 1;
+			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().gameStep = thisStep + 1;
+			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().pause = false;
+			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().startTime += 5;
 
         }
 
