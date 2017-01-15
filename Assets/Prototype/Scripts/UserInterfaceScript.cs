@@ -7,19 +7,25 @@ namespace Vuforia
 {
 	public class UserInterfaceScript : MonoBehaviour
 	{
+		public float timer;
+		private float stepStartTime;
 
-		public float startTime;
-		private float elapsedTime;
 		public bool pause;
 		public int gameStep;
 		public string gameText;
 
+		private string[] steps;
+
 		// Use this for initialization
 		void Start ()
 		{
-			startTime = Time.time;
-			pause = false;
-			gameStep = 1;
+			timer = 0;
+			gameStep = 0;
+			steps = new string[] {"Step 1: Build the base.\n", 
+				"Step 2: Add the mid-frame.\n", 
+				"Step 3: Add the ceiling.\n", 
+				"Complete: Bus."
+			};
 
 		}
 		
@@ -28,34 +34,46 @@ namespace Vuforia
 		{
 			// StepText
 			if (gameStep > 0 && gameStep < 4) {
+				pause = false;
 				GameObject.Find ("StepText").GetComponent<Text> ().text = "Step: " + gameStep.ToString () + "/3";
+			} else {
+				pause = true;
 			}
 
 			// TimeText
 			if (!pause) {
-				elapsedTime = Time.time - startTime;
+				timer += Time.deltaTime;
 			}
-			GameObject.Find ("TimeText").GetComponent<Text> ().text = "Time: " + Mathf.Floor (elapsedTime / 60).ToString ("00") + ":" + 
-				Mathf.Floor (elapsedTime % 60).ToString ("00");
+			GameObject.Find ("TimeText").GetComponent<Text> ().text = "Time: " + Mathf.Floor (timer / 60).ToString ("00") + ":" +
+			Mathf.Floor (timer % 60).ToString ("00");
 
-			// GameText
-			switch (gameStep)
-			{
-			case 1:
-				gameText = "Step 1/3\n<size=30>1st Step</size>\nBuild the base.";
-				break;
-			case 2:
-				gameText = "Step 2/3\n<size=30>Next Step</size>\nAdd the mid-frame.";
-				break;
-			case 3:
-				gameText = "Step 3/3\n<size=30>Last Step</size>\nAdd the ceiling.";
-				break;
-			case 4:
-				gameText = "Level: Bus\n<size=30>Complete</size>\nCongratulations";
-				break;
+			// ListText
+			if (timer > stepStartTime + 3) {
+				GameObject.Find ("GameText").GetComponent<Text>().text = "";
+				GameObject.Find ("ListText").GetComponent<Text> ().text += steps [gameStep - 1];
+				stepStartTime = float.MaxValue;
 			}
-			GameObject.Find ("GameText").GetComponent<Text>().text = gameText;
 
 		}
+
+		public void BeginGame () {
+			gameStep = 1;
+			stepStartTime = 0;
+			GameObject.Find ("GameText").GetComponent<Text> ().text = steps[1];
+		}
+
+		public void NextStep (int newStep) {
+
+			gameStep = newStep;
+
+			stepStartTime = timer;
+
+			// GameText
+			if (gameStep > 0 && gameStep < 5) {
+				gameText = steps[gameStep-1];
+			}
+			GameObject.Find ("GameText").GetComponent<Text> ().text = gameText;
+		}
+			
 	}
 }

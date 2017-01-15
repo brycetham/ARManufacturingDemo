@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UnityEngine.UI;
+
 namespace Vuforia
 {
 
@@ -68,16 +70,20 @@ namespace Vuforia
         }
 
         IEnumerator Complete()
-        {
-			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().pause = true;
-			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().gameStep = 0;
-			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().gameText = completeText;
-            yield return new WaitForSeconds(5);
-			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().gameStep = thisStep + 1;
-			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().pause = false;
-			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().startTime += 5;
-
+		{
+			GameObject.Find ("GameText").GetComponent<Text>().text = completeText;
+			yield return new WaitForSeconds(5);
+			GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().NextStep (thisStep + 1);
         }
+
+		// For testing purposes only.
+		void Update() {
+			if (GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep == thisStep){
+				if (Input.GetKeyDown ("space"))
+					StartCoroutine (Complete ());
+			}
+
+		}
 
     }
 }
