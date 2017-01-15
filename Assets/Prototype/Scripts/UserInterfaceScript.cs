@@ -15,12 +15,11 @@ namespace Vuforia
 		public string gameText;
 
 		private string[] steps;
+		public bool transitionFlag;
 
 		// Use this for initialization
 		void Start ()
 		{
-			timer = 0;
-			gameStep = 0;
 			steps = new string[] {"Step 1: Build the base.\n", 
 				"Step 2: Add the mid-frame.\n", 
 				"Step 3: Add the ceiling.\n", 
@@ -43,36 +42,40 @@ namespace Vuforia
 			// TimeText
 			if (!pause) {
 				timer += Time.deltaTime;
+				GameObject.Find ("TimeText").GetComponent<Text> ().text = "Time: " +
+				Mathf.Floor (timer / 60).ToString ("00") + ":" +
+				Mathf.Floor (timer % 60).ToString ("00");
 			}
-			GameObject.Find ("TimeText").GetComponent<Text> ().text = "Time: " + Mathf.Floor (timer / 60).ToString ("00") + ":" +
-			Mathf.Floor (timer % 60).ToString ("00");
 
-			// ListText
-			if (timer > stepStartTime + 3) {
-				GameObject.Find ("GameText").GetComponent<Text>().text = "";
+			// GameText & ListText
+			if (transitionFlag && timer > stepStartTime + 3) {
+				GameObject.Find ("GameText").GetComponent<Text> ().text = "";
 				GameObject.Find ("ListText").GetComponent<Text> ().text += steps [gameStep - 1];
-				stepStartTime = float.MaxValue;
+				transitionFlag = false;
 			}
-
+								
 		}
 
-		public void BeginGame () {
-			gameStep = 1;
-			stepStartTime = 0;
-			GameObject.Find ("GameText").GetComponent<Text> ().text = steps[1];
+		public void BeginGame ()
+		{
+			StartCoroutine (NextStep (1, "Ready?"));
 		}
 
-		public void NextStep (int newStep) {
+		public IEnumerator NextStep (int newStep, string completeText)
+		{
 
+			float elaspedTime = timer - stepStartTime;
+			GameObject.Find ("GameText").GetComponent<Text> ().text = completeText + "\nTime: +" +
+			Mathf.Floor (elaspedTime / 60).ToString ("00") + ":" +
+			Mathf.Floor (elaspedTime % 60).ToString ("00");
+			gameStep = 0; // temporarily pause game
+			yield return new WaitForSeconds (5);
 			gameStep = newStep;
-
 			stepStartTime = timer;
 
-			// GameText
-			if (gameStep > 0 && gameStep < 5) {
-				gameText = steps[gameStep-1];
-			}
+			gameText = steps [gameStep - 1];
 			GameObject.Find ("GameText").GetComponent<Text> ().text = gameText;
+			transitionFlag = true;
 		}
 			
 	}
