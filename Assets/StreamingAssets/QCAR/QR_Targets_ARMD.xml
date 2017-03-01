@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="ARMPBS01" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS02" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS03" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS04" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS05" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS06" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS07" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS08" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS09" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS10" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS11" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS12" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS13" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS14" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS15" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS16" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS17" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS18" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS19" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS20" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS21" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS22" size="100.000000 100.000000" />
+    <ImageTarget name="ARMPBS23" size="100.000000 100.000000" />
+  </Tracking>
+</QCARConfig>

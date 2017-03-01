@@ -34,7 +34,7 @@ public class Expand : MonoBehaviour {
 		// Perform expansion
 		if (expandTime > 0) {
 			foreach (Transform child in transform) {
-				child.position *= isExpanded ? 1.03f : 0.97f;
+				child.position *= isExpanded ? 1.05f : 0.95f;
 			}
 		}
 
