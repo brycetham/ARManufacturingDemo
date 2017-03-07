@@ -25,10 +25,8 @@ namespace Vuforia
                                         TrackableBehaviour.Status previousStatus,
                                         TrackableBehaviour.Status newStatus)
 		{
-			if (//eventSystem.GetComponent<UserInterfaceScript>().gameStep == this.step &&
-				(newStatus == TrackableBehaviour.Status.DETECTED ||
-					newStatus == TrackableBehaviour.Status.TRACKED ||
-					newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED))
+			if (newStatus == TrackableBehaviour.Status.DETECTED ||
+				newStatus == TrackableBehaviour.Status.TRACKED)
             {
                 OnTrackingFound();
             }
