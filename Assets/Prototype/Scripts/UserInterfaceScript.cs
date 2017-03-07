@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine.UI;
 
@@ -14,27 +15,48 @@ namespace Vuforia
 		public int gameStep;
 		public string gameText;
 
-		private string[] steps;
+		private Dictionary<int, string> steps;
 		public bool transitionFlag;
 
 		// Use this for initialization
 		void Start ()
 		{
-			steps = new string[] {"Step 1: Build the base.\n", 
-				"Step 2: Add the mid-frame.\n", 
-				"Step 3: Add the ceiling.\n", 
-				"Complete: Bus."
+			steps = new Dictionary<int, string>()
+			{
+				{0, "Ready?"},
+				{1, "Begin with the base frame."},
+				{2, "Add the front mount and front axle."},
+				{3, "Add the middle mount and rear axle."},
+				{4, "Add the rear mount."},
+				{5, "Add the frame top."},
+				{6, "Add the rear lights"},
+				{7, "Add the rear components."},
+				{8, "Add the axle covers."},
+				{9, "Add the interior base."},
+				{10, "Add the rear fixtures."},
+				{11, "Add the seats."},
+				{12, "Add the rear view mirrors."},
+				{13, "Add the wall foundations."},
+				{14, "Add the rear wall."},
+				{15, "Add the rear side windows."},
+				{16, "Add the front side windows."},
+				{17, "Add windshield."},
+				{18, "Add the rear side windows."},
+				{19, "Add the hubcap."},
+				{20, "Add the front fixtures."},
+				{21, "Add the top fixture base."},
+				{22, "Add the top fixtures."},
+				{23, "Add the wheels."}
 			};
-
 		}
 		
 		// Update is called once per frame
 		void Update ()
 		{
 			// StepText
-			if (gameStep > 0 && gameStep < 4) {
+			if (gameStep > 0 && gameStep <= steps.Count) {
 				pause = false;
-				GameObject.Find ("StepText").GetComponent<Text> ().text = "Step: " + gameStep.ToString () + "/3";
+				GameObject.Find ("StepText").GetComponent<Text> ().text = "Step: " + gameStep.ToString () + "/" + steps.Count;
 			} else {
 				pause = true;
 			}
@@ -47,12 +69,15 @@ namespace Vuforia
 				Mathf.Floor (timer % 60).ToString ("00");
 			}
 
-			// GameText & ListText
-			if (transitionFlag && timer > stepStartTime + 3) {
-				GameObject.Find ("GameText").GetComponent<Text> ().text = "";
-				GameObject.Find ("ListText").GetComponent<Text> ().text += steps [gameStep - 1];
-				transitionFlag = false;
-			}
+			GameObject.Find ("GameText").GetComponent<Text> ().text = "";
+			GameObject.Find ("ListText").GetComponent<Text> ().text = steps [gameStep];
+
+//			// GameText & ListText
+//			if (transitionFlag && timer > stepStartTime + 3) {
+//				GameObject.Find ("GameText").GetComponent<Text> ().text = "";
+//				GameObject.Find ("ListText").GetComponent<Text> ().text = steps [gameStep];
+//				transitionFlag = false;
+//			}
 								
 		}
 

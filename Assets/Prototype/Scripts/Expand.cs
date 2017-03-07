@@ -26,9 +26,8 @@ public class Expand : MonoBehaviour {
 	void Update () {
 
 		// Activate expansion
-		if (Input.GetKeyDown ("e") && expandTime < 0) {
-			expandTime = 1;
-			isExpanded = !isExpanded;
+		if (Input.GetKeyDown ("e")) {
+			expand ();
 		}
 
 		// Perform expansion
@@ -47,5 +46,13 @@ public class Expand : MonoBehaviour {
 
 		// Update timer
 		expandTime -= Time.deltaTime;
+	}
+
+	// Activate expansion
+	public void expand() {
+		if (expandTime < 0) {
+			expandTime = 1;
+			isExpanded = !isExpanded;
+		}
 	}
 }

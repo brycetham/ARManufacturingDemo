@@ -8,12 +8,12 @@ namespace Vuforia
     {
 
         private TrackableBehaviour mTrackableBehaviour;
-        public int gameStep;
-        public string gameText;
+        public int step;
+
+		public GameObject eventSystem;
 
         void Start()
         {
-            gameStep = 1;
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
             {
@@ -21,35 +21,14 @@ namespace Vuforia
             }
         }
 
-        void Update()
-        {
-            switch (gameStep)
-            {
-                case 1:
-                    gameText = "Step 1/3\n<size=30>1st Step</size>\nBuild the base.";
-                    break;
-                case 2:
-                    gameText = "Step 2/3\n<size=30>Next Step</size>\nAdd the mid-frame.";
-                    break;
-                case 3:
-                    gameText = "Step 3/3\n<size=30>Last Step</size>\nAdd the ceiling.";
-                    break;
-                case 4:
-                    gameText = "Level: Bus\n<size=30>Complete</size>\nCongratulations";
-                    break;
-            }
-
-            GameObject.Find("QRText").GetComponent<TextMesh>().text = gameText;
-
-        }
-
         public void OnTrackableStateChanged(
                                         TrackableBehaviour.Status previousStatus,
                                         TrackableBehaviour.Status newStatus)
-        {
-            if (newStatus == TrackableBehaviour.Status.DETECTED ||
-                newStatus == TrackableBehaviour.Status.TRACKED ||
-                newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
+		{
+			if (//eventSystem.GetComponent<UserInterfaceScript>().gameStep == this.step &&
+				(newStatus == TrackableBehaviour.Status.DETECTED ||
+					newStatus == TrackableBehaviour.Status.TRACKED ||
+					newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED))
             {
                 OnTrackingFound();
             }
@@ -69,6 +48,7 @@ namespace Vuforia
                 component.enabled = true;
             }
 
+			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().gameStep = step;
         }
 
 
@@ -84,7 +64,6 @@ namespace Vuforia
 
             Debug.Log("QR Code Lost!");
             //active = false;
-
         }
 
     }
