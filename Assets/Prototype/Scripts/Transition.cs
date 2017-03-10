@@ -13,31 +13,40 @@ public class Transition : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		startTime = -1;
 		startMarker = transform.position;
 		endMarker = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown ("left")) {
+			Left ();
+		}
+
+		if (Input.GetKeyDown ("right")) {
+			Right ();
+		}
+
 		float distCovered = (Time.time - startTime) * 1000;
 		float fracJourney = distCovered / 500;
 		transform.position = Vector3.Lerp(startMarker, endMarker, fracJourney);
 	}
 
 	public void Left() {
-		if (step > 0) {
+		if (step > 1 && Time.time > startTime + 1) {
 			step--;
 			startMarker = transform.position;
-			endMarker = transform.position - new Vector3 (500, 0, 0);
+			endMarker = transform.position - new Vector3 (0, 0, 500);
 			startTime = Time.time;
 		}
 	}
 
 	public void Right() {
-		if (step < maxSteps) {
+		if (step < maxSteps && Time.time > startTime + 1) {
 			step++;
 			startMarker = transform.position;
-			endMarker = transform.position + new Vector3 (500, 0, 0);
+			endMarker = transform.position + new Vector3 (0, 0, 500);
 			startTime = Time.time;
 		}
 	}
