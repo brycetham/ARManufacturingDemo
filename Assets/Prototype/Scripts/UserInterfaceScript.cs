@@ -98,7 +98,7 @@ namespace Vuforia
 			stepStartTime = timer;
 
 			gameText = steps [gameStep - 1];
-			GameObject.Find ("GameText").GetComponent<Text> ().text = gameText;
+//			GameObject.Find ("GameText").GetComponent<Text> ().text = gameText;
 			transitionFlag = true;
 		}
 			
