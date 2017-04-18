@@ -8,6 +8,8 @@ public class Expand : MonoBehaviour {
 	private bool isExpanded;
 	private Hashtable origins;
 
+	private Hashtable colors;
+
 	// Use this for initialization
 	void Start () {
 
@@ -15,10 +17,18 @@ public class Expand : MonoBehaviour {
 		expandTime = 0;
 		isExpanded = false;
 
-		// Initialize hash table
+		// Initialize hash tables
 		origins = new Hashtable();
 		foreach (Transform child in transform) {
 			origins [child] = child.position;
+		}
+		colors = new Hashtable();
+		foreach (Transform child in transform) {
+			if (child.name.Substring (0, 1).Equals("P")) {
+				foreach (Transform part in child) {
+					colors [part] = part.GetComponent<MeshRenderer> ().material.color;
+				}
+			}
 		}
 	}
 
@@ -26,7 +36,7 @@ public class Expand : MonoBehaviour {
 	void Update () {
 
 		// Activate expansion
-		if (Input.GetKeyDown ("e")) {
+		if (Input.GetKeyDown ("e") || Input.GetKeyDown(KeyCode.Escape) /*|| Input.GetButtonDown("BUTTON_TYPE_MAGNET")*/ ) {
 			expand ();
 		}
 
@@ -46,6 +56,16 @@ public class Expand : MonoBehaviour {
 
 		// Update timer
 		expandTime -= Time.deltaTime;
+
+		// Invoke blinking
+		foreach (Transform child in transform) {
+			if (child.name.Substring (0, 1).Equals("P")) {
+				foreach (Transform part in child) {
+					Color flashColor = Color.Lerp ((Color) colors [part], Color.white, Mathf.PingPong (Time.time, 1));
+					part.GetComponent<MeshRenderer> ().material.color = flashColor;
+				}
+			}
+		}
 	}
 
 	// Activate expansion
