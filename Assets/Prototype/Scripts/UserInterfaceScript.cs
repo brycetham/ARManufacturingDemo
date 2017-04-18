@@ -47,11 +47,17 @@ namespace Vuforia
 				{ 22, "Add the top fixtures." },
 				{ 23, "Add the wheels." }
 			};
+
+			// For testing purposes only.
+			// this.BeginGame ();
 		}
 		
 		// Update is called once per frame
 		void Update ()
 		{
+			// Resize background plane
+//			GameObject.Find("BackgroundPlane").transform.position = new Vector3(0, 0, 1500);
+
 			// StepText
 			if (gameStep > 0 && gameStep <= steps.Count) {
 				pause = false;
@@ -71,12 +77,16 @@ namespace Vuforia
 			GameObject.Find ("GameText").GetComponent<Text> ().text = "";
 			GameObject.Find ("ListText").GetComponent<Text> ().text = steps [gameStep];
 
-//			// GameText & ListText
-//			if (transitionFlag && timer > stepStartTime + 3) {
-//				GameObject.Find ("GameText").GetComponent<Text> ().text = "";
-//				GameObject.Find ("ListText").GetComponent<Text> ().text = steps [gameStep];
-//				transitionFlag = false;
+//			if (GetComponent<CardboardMagnetSensor>().clicked()) {
+//				GameObject.Find ("ListText").GetComponent<Text> ().text = "TRIGGERED!";
 //			}
+
+			// GameText & ListText
+			if (transitionFlag && timer > stepStartTime + 3) {
+				GameObject.Find ("GameText").GetComponent<Text> ().text = "";
+				GameObject.Find ("ListText").GetComponent<Text> ().text = steps [gameStep];
+				transitionFlag = false;
+			}
 								
 		}
 
@@ -89,15 +99,15 @@ namespace Vuforia
 		{
 
 			float elaspedTime = timer - stepStartTime;
-			GameObject.Find ("GameText").GetComponent<Text> ().text = completeText + "\nTime: +" +
-			Mathf.Floor (elaspedTime / 60).ToString ("00") + ":" +
-			Mathf.Floor (elaspedTime % 60).ToString ("00");
+//			GameObject.Find ("GameText").GetComponent<Text> ().text = completeText + "\nTime: +" +
+//			Mathf.Floor (elaspedTime / 60).ToString ("00") + ":" +
+//			Mathf.Floor (elaspedTime % 60).ToString ("00");
 			gameStep = 0; // temporarily pause game
 			yield return new WaitForSeconds (5);
 			gameStep = newStep;
 			stepStartTime = timer;
 
-			gameText = steps [gameStep - 1];
+//			gameText = steps [gameStep - 1];
 //			GameObject.Find ("GameText").GetComponent<Text> ().text = gameText;
 			transitionFlag = true;
 		}
