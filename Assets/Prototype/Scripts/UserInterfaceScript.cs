@@ -49,7 +49,7 @@ namespace Vuforia
 			};
 
 			// For testing purposes only.
-			// this.BeginGame ();
+			this.BeginGame ();
 		}
 		
 		// Update is called once per frame
