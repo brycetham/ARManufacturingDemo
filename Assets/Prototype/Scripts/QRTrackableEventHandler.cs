@@ -38,15 +38,19 @@ namespace Vuforia
 
         private void OnTrackingFound()
         {
-            Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
+			if (GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep != 0) {
 
-            // Enable rendering:
-            foreach (Renderer component in rendererComponents)
-            {
-                component.enabled = true;
-            }
+				print (GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep);
+				
+            	Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
 
-			GameObject.Find("EventSystem").GetComponent<UserInterfaceScript>().gameStep = step;
+            	// Enable rendering:
+				foreach (Renderer component in rendererComponents) {
+					component.enabled = true;
+				}
+
+				GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep = step;
+			}
         }
 
 
@@ -60,7 +64,7 @@ namespace Vuforia
                 component.enabled = false;
             }
 
-            Debug.Log("QR Code Lost!");
+            //Debug.Log("QR Code Lost!");
             //active = false;
         }
 

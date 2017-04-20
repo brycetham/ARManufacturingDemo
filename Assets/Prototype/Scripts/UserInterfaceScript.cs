@@ -12,7 +12,7 @@ namespace Vuforia
 		private float stepStartTime;
 
 		public bool pause;
-		public int gameStep;
+		public int gameStep = 0;
 		public string gameText;
 
 		private Dictionary<int, string> steps;

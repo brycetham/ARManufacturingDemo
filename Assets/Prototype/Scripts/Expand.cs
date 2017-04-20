@@ -61,7 +61,7 @@ public class Expand : MonoBehaviour {
 		foreach (Transform child in transform) {
 			if (child.name.Substring (0, 1).Equals("P")) {
 				foreach (Transform part in child) {
-					Color flashColor = Color.Lerp ((Color) colors [part], Color.white, Mathf.PingPong (Time.time, 1));
+					Color flashColor = Color.Lerp (Color.white, (Color) colors [part], Mathf.PingPong (Time.time, 2));
 					part.GetComponent<MeshRenderer> ().material.color = flashColor;
 				}
 			}
