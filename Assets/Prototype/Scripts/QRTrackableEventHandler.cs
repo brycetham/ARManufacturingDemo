@@ -40,7 +40,7 @@ namespace Vuforia
         {
 			if (GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep != 0) {
 
-				print (GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep);
+				// print (GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep);
 				
             	Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
 

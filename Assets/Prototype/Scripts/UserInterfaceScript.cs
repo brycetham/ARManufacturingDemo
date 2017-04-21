@@ -18,6 +18,8 @@ namespace Vuforia
 		private Dictionary<int, string> steps;
 		public bool transitionFlag;
 
+		public bool annotateFlag = false;
+
 		// Use this for initialization
 		void Start ()
 		{
@@ -98,18 +100,23 @@ namespace Vuforia
 		public IEnumerator NextStep (int newStep, string completeText)
 		{
 
-			float elaspedTime = timer - stepStartTime;
+//			float elaspedTime = timer - stepStartTime;
 //			GameObject.Find ("GameText").GetComponent<Text> ().text = completeText + "\nTime: +" +
 //			Mathf.Floor (elaspedTime / 60).ToString ("00") + ":" +
 //			Mathf.Floor (elaspedTime % 60).ToString ("00");
 			gameStep = 0; // temporarily pause game
-			yield return new WaitForSeconds (5);
+			yield return new WaitForSeconds (3);
 			gameStep = newStep;
 			stepStartTime = timer;
 
 //			gameText = steps [gameStep - 1];
 //			GameObject.Find ("GameText").GetComponent<Text> ().text = gameText;
 			transitionFlag = true;
+		}
+
+		public void Annotate()
+		{
+			annotateFlag = !annotateFlag;
 		}
 			
 	}
