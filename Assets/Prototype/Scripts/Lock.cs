@@ -6,6 +6,7 @@ namespace Vuforia {
 	public class Lock : MonoBehaviour {
 
 		public GameObject camera;
+		public GameObject pointer;
 
 		// Use this for initialization
 		void Start () {
@@ -23,10 +24,12 @@ namespace Vuforia {
 				foreach (Transform child in transform) {
 					child.gameObject.SetActive (true);
 				}
+				pointer.SetActive (true);
 			} else {
 				foreach (Transform child in transform) {
 					child.gameObject.SetActive (false);
 				}
+				pointer.SetActive (false);
 			}
 
 		}

@@ -80,7 +80,7 @@ namespace Vuforia {
 		// Activate blink
 		public void blink(Transform child) {
 			foreach (Transform part in child) {
-				if (!part.name.Equals ("Label")) {
+				if (!part.name.Equals ("Label") && !part.name.Equals ("Pointer")) {
 //					if (GameObject.Find ("EventSystem").GetComponent <UserInterfaceScript > ().annotateFlag) {
 						Color flashColor = Color.Lerp (Color.white, (Color)colors [part], Mathf.PingPong (Time.time, 1));
 						part.GetComponent<MeshRenderer> ().material.color = flashColor;
