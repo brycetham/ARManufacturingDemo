@@ -20,6 +20,9 @@ namespace Vuforia
 
 		public bool annotateFlag = false;
 
+		public AudioSource background;
+		public AudioSource tracked;
+
 		// Use this for initialization
 		void Start ()
 		{
@@ -49,6 +52,8 @@ namespace Vuforia
 				{ 22, "Add the top fixtures." },
 				{ 23, "Add the wheels." }
 			};
+
+			background.Play ();
 
 			// For testing purposes only.
 			// this.BeginGame ();
@@ -117,6 +122,11 @@ namespace Vuforia
 		public void Annotate()
 		{
 			annotateFlag = !annotateFlag;
+		}
+
+		public void Tracked()
+		{
+			tracked.Play ();
 		}
 			
 	}

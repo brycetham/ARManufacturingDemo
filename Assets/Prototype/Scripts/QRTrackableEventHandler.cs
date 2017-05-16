@@ -38,7 +38,9 @@ namespace Vuforia
 
         private void OnTrackingFound()
         {
-			if (GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep != 0) {
+			GameObject es = GameObject.Find ("EventSystem");
+
+			if (es.GetComponent<UserInterfaceScript> ().gameStep != 0) {
 
 				// print (GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep);
 				
@@ -49,7 +51,8 @@ namespace Vuforia
 					component.enabled = true;
 				}
 
-				GameObject.Find ("EventSystem").GetComponent<UserInterfaceScript> ().gameStep = step;
+				es.GetComponent<UserInterfaceScript> ().gameStep = step;
+				es.GetComponent<UserInterfaceScript> ().Tracked ();
 			}
         }
 
