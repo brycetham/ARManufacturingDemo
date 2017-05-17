@@ -47,7 +47,7 @@ namespace Vuforia {
 			// Perform expansion
 			if (expandTime > 0) {
 				foreach (Transform child in transform) {
-					child.position *= isExpanded ? 1.05f : 0.95f;
+					child.position *= isExpanded ? 1.02f : 0.98f;
 				}
 			}
 
