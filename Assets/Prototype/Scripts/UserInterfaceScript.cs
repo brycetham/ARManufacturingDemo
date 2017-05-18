@@ -35,22 +35,22 @@ namespace Vuforia
 				{ 5, "Add the frame top." },
 				{ 6, "Add the rear lights" },
 				{ 7, "Add the rear components." },
-				{ 8, "Add the axle covers." },
+				{ 8, "Install the front mud guard, then install the rear mud guard." },
 				{ 9, "Add the interior base." },
 				{ 10, "Add the rear fixtures." },
-				{ 11, "Add the seats." },
+				{ 11, "Install the corner seat, then install the 5 rows of seats behind it." },
 				{ 12, "Add the rear view mirrors." },
 				{ 13, "Add the wall foundations." },
 				{ 14, "Add the rear wall." },
 				{ 15, "Add the rear side windows." },
-				{ 16, "Add the front side windows." },
+				{ 16, "Install the front wall and windows." },
 				{ 17, "Add windshield." },
 				{ 18, "Add the rear side windows." },
 				{ 19, "Add the hubcap." },
 				{ 20, "Add the front fixtures." },
 				{ 21, "Add the top fixture base." },
 				{ 22, "Add the top fixtures." },
-				{ 23, "Add the wheels." }
+				{ 23, "Install the wheels, first in the front, then in the rear." }
 			};
 
 			background.Play ();

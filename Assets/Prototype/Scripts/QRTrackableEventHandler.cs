@@ -12,6 +12,8 @@ namespace Vuforia
 
 		public GameObject eventSystem;
 
+		public AudioSource instructions;
+
         void Start()
         {
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
@@ -53,7 +55,12 @@ namespace Vuforia
 
 				es.GetComponent<UserInterfaceScript> ().gameStep = step;
 				es.GetComponent<UserInterfaceScript> ().Tracked ();
+
+				if (!instructions.isPlaying) {
+					instructions.Play ();
+				}
 			}
+				
         }
 
 
